@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Portfolio - Yash Tripathi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: #0a0a0a;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            background: #1a1a1a;
+            border: 2px solid #2a2a2a;
+            padding: 40px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #38FF62;
+        }
+        p {
+            color: #a0a0a0;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        .download-btn {
+            display: inline-block;
+            background: #38FF62;
+            color: #0a0a0a;
+            padding: 15px 40px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-family: 'JetBrains Mono', monospace;
+            position: relative;
+        }
+        .download-btn:hover {
+            background: #2AE052;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(56, 255, 98, 0.3);
+        }
+        .file-size {
+            display: block;
+            margin-top: 15px;
+            color: #6a6a6a;
+            font-size: 0.9rem;
+        }
+        .features {
+            margin-top: 40px;
+            text-align: left;
+            border-top: 1px solid #2a2a2a;
+            padding-top: 30px;
+        }
+        .features h2 {
+            color: #38FF62;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        .features ul {
+            list-style: none;
+        }
+        .features li {
+            color: #a0a0a0;
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        .features li:before {
+            content: "▹";
+            color: #38FF62;
+            position: absolute;
+            left: 0;
+        }
+        .glow {
+            position: relative;
+        }
+        .glow:before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, #38FF62, #2AE052);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+            filter: blur(10px);
+        }
+        .glow:hover:before {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📦 Download Portfolio</h1>
+        <p>
+            Download the complete source code of this stunning portfolio website with all the amazing animations and effects!
+        </p>
+        
+        <a href="/yash-portfolio-complete.zip" class="download-btn glow" download>
+            Download Now
+        </a>
+        <span class="file-size">Package Size: ~74KB</span>
+        
+        <div class="features">
+            <h2>✨ What's Included:</h2>
+            <ul>
+                <li>Complete React source code</li>
+                <li>Animated background with particles</li>
+                <li>Spotlight effect system</li>
+                <li>Glowing border components</li>
+                <li>All 8 pages (Home, About, Projects, etc.)</li>
+                <li>50+ Shadcn UI components</li>
+                <li>Tailwind CSS configuration</li>
+                <li>README with setup instructions</li>
+                <li>All custom animations & effects</li>
+            </ul>
+        </div>
+        
+        <div class="features">
+            <h2>🚀 Quick Start:</h2>
+            <ul>
+                <li>Extract the zip file</li>
+                <li>Run: yarn install</li>
+                <li>Run: yarn start</li>
+                <li>Open: http://localhost:3000</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
