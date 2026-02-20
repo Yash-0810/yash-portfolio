@@ -11,7 +11,6 @@ import SkillsPage from './pages/SkillsPage';
 import EducationPage from './pages/EducationPage';
 import CertificatesPage from './pages/CertificatesPage';
 import ContactPage from './pages/ContactPage';
-import DownloadPage from './pages/DownloadPage';
 
 function App() {
   return (
@@ -27,7 +26,6 @@ function App() {
           <Route path="/education" element={<EducationPage />} />
           <Route path="/certificates" element={<CertificatesPage />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/download" element={<DownloadPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>
