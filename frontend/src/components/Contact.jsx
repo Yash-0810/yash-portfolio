@@ -19,7 +19,7 @@ const Contact = () => {
 
   // EmailJS configuration
   const PUBLIC_KEY = 'k7hKY_rqI_HND9v4Y';
-  const SERVICE_ID = 'service_6y4svf7';
+  const SERVICE_ID = 'service_9z2ec9u';
   const TEMPLATE_ID = 'template_doiqxoj';
 
   const handleChange = (e) => {
