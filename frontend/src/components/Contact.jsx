@@ -33,9 +33,12 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    console.log('Form submitted with data:', formData);
+    console.log('EmailJS config:', { SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY });
+
     try {
       // Send email using EmailJS
-      await emailjs.send(
+      const result = await emailjs.send(
         SERVICE_ID,
         TEMPLATE_ID,
         {
@@ -47,18 +50,19 @@ const Contact = () => {
         PUBLIC_KEY
       );
 
+      console.log('EmailJS result:', result);
       toast({
         title: 'Message Sent!',
         description: 'Thank you for reaching out. I\'ll get back to you soon.',
       });
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
+      console.error('EmailJS error:', error);
       toast({
         title: 'Error',
         description: 'Failed to send message. Please try again.',
         variant: 'destructive',
       });
-      console.error('EmailJS error:', error);
     } finally {
       setIsSubmitting(false);
     }
