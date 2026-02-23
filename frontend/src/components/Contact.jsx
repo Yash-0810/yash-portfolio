@@ -62,6 +62,8 @@ const Contact = () => {
 
     } catch (error) {
       console.error('EmailJS error:', error);
+      console.error('EmailJS error text:', error.text);
+      console.error('EmailJS error status:', error.status);
 
       toast({
         title: 'Error',
