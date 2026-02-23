@@ -9,18 +9,20 @@ import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const { toast } = useToast();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
     message: '',
   });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // EmailJS configuration
+  // EmailJS Configuration
   const PUBLIC_KEY = 'k7hKY_rqI_HND9v4Y';
   const SERVICE_ID = 'service_9z2ec9u';
-  const TEMPLATE_ID = 'template_doiqxoj';
+  const TEMPLATE_ID = 'template_8vlqwxl';
 
   const handleChange = (e) => {
     setFormData({
@@ -33,31 +35,34 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    console.log('Form submitted with data:', formData);
-    console.log('EmailJS config:', { SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY });
-
     try {
-      // Send email using EmailJS
-      const result = await emailjs.send(
+      await emailjs.send(
         SERVICE_ID,
         TEMPLATE_ID,
         {
-          from_name: formData.name,
-          from_email: formData.email,
+          name: formData.name,
+          email: formData.email,
           subject: formData.subject,
           message: formData.message,
         },
         PUBLIC_KEY
       );
 
-      console.log('EmailJS result:', result);
       toast({
         title: 'Message Sent!',
-        description: 'Thank you for reaching out. I\'ll get back to you soon.',
+        description: "Thank you for reaching out. I'll get back to you soon.",
       });
-      setFormData({ name: '', email: '', subject: '', message: '' });
+
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+      });
+
     } catch (error) {
       console.error('EmailJS error:', error);
+
       toast({
         title: 'Error',
         description: 'Failed to send message. Please try again.',
@@ -109,7 +114,6 @@ const Contact = () => {
   return (
     <section id="contact" className="section bg-[#0a0a0a] relative">
       <div className="container mx-auto px-6">
-        {/* Section Label */}
         <div className="mb-12">
           <span className="font-mono text-[#38FF62] text-xs md:text-sm uppercase tracking-widest border border-[#38FF62] px-3 py-1 inline-block">
             Contact
@@ -118,33 +122,32 @@ const Contact = () => {
 
         <div className="mb-12">
           <h2 className="font-mono text-3xl md:text-5xl font-bold text-white mb-4">
-            Let's
-            <br />
+            Let's <br />
             <span className="text-[#38FF62]">Connect</span>
           </h2>
           <p className="text-[#a0a0a0] text-lg max-w-2xl">
-            Have a project in mind or want to collaborate? Feel free to reach out. I'm always open to discussing new opportunities.
+            Have a project in mind or want to collaborate? Feel free to reach out.
           </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Information */}
+
+          {/* LEFT SIDE */}
           <div>
-            {/* Contact Cards */}
+
             <div className="space-y-6 mb-8">
               {contactInfo.map((info, index) => (
-                <Card key={index} className="bg-[#1a1a1a] border-[#2a2a2a] p-6 hover:border-[#38FF62] transition-all duration-300">
+                <Card key={index} className="bg-[#1a1a1a] border-[#2a2a2a] p-6">
                   <div className="flex items-center gap-4">
                     <div className="bg-[#38FF62] p-3">
                       <info.icon className="text-black" size={24} />
                     </div>
                     <div>
-                      <p className="text-xs font-mono text-[#a0a0a0] uppercase tracking-wider mb-1">{info.label}</p>
+                      <p className="text-xs font-mono text-[#a0a0a0] uppercase mb-1">
+                        {info.label}
+                      </p>
                       {info.link ? (
-                        <a
-                          href={info.link}
-                          className="text-white hover:text-[#38FF62] transition-colors font-mono"
-                        >
+                        <a href={info.link} className="text-white hover:text-[#38FF62] font-mono">
                           {info.value}
                         </a>
                       ) : (
@@ -156,7 +159,6 @@ const Contact = () => {
               ))}
             </div>
 
-            {/* Social Links */}
             <Card className="bg-[#1a1a1a] border-[#2a2a2a] p-6">
               <h3 className="font-mono text-lg font-bold text-white mb-4">Follow Me</h3>
               <div className="flex gap-4">
@@ -166,99 +168,74 @@ const Contact = () => {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-[#2a2a2a] p-4 hover:bg-[#38FF62] transition-colors group"
-                    aria-label={social.label}
+                    className="bg-[#2a2a2a] p-4 hover:bg-[#38FF62] group"
                   >
-                    <social.icon className="text-[#a0a0a0] group-hover:text-black transition-colors" size={24} />
+                    <social.icon className="text-[#a0a0a0] group-hover:text-black" size={24} />
                   </a>
                 ))}
               </div>
             </Card>
+
           </div>
 
-          {/* Contact Form */}
+          {/* RIGHT SIDE - FORM */}
           <Card className="bg-[#1a1a1a] border-[#2a2a2a] p-8">
             <h3 className="font-mono text-xl font-bold text-white mb-6">Send a Message</h3>
+
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-mono text-[#a0a0a0] uppercase tracking-wider mb-2">
-                  Name
-                </label>
-                <Input
-                  id="name"
-                  name="name"
-                  type="text"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="bg-[#0a0a0a] border-[#2a2a2a] text-white focus:border-[#38FF62] font-mono"
-                  style={{ borderRadius: '0' }}
-                  placeholder="Your name"
-                />
-              </div>
 
-              <div>
-                <label htmlFor="email" className="block text-sm font-mono text-[#a0a0a0] uppercase tracking-wider mb-2">
-                  Email
-                </label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="bg-[#0a0a0a] border-[#2a2a2a] text-white focus:border-[#38FF62] font-mono"
-                  style={{ borderRadius: '0' }}
-                  placeholder="your.email@example.com"
-                />
-              </div>
+              <Input
+                name="name"
+                type="text"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                placeholder="Your Name"
+                className="bg-[#0a0a0a] border-[#2a2a2a] text-white font-mono"
+              />
 
-              <div>
-                <label htmlFor="subject" className="block text-sm font-mono text-[#a0a0a0] uppercase tracking-wider mb-2">
-                  Subject
-                </label>
-                <Input
-                  id="subject"
-                  name="subject"
-                  type="text"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  className="bg-[#0a0a0a] border-[#2a2a2a] text-white focus:border-[#38FF62] font-mono"
-                  style={{ borderRadius: '0' }}
-                  placeholder="What's this about?"
-                />
-              </div>
+              <Input
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                placeholder="Your Email"
+                className="bg-[#0a0a0a] border-[#2a2a2a] text-white font-mono"
+              />
 
-              <div>
-                <label htmlFor="message" className="block text-sm font-mono text-[#a0a0a0] uppercase tracking-wider mb-2">
-                  Message
-                </label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className="bg-[#0a0a0a] border-[#2a2a2a] text-white focus:border-[#38FF62] font-mono resize-none"
-                  style={{ borderRadius: '0' }}
-                  placeholder="Your message here..."
-                />
-              </div>
+              <Input
+                name="subject"
+                type="text"
+                value={formData.subject}
+                onChange={handleChange}
+                required
+                placeholder="Subject"
+                className="bg-[#0a0a0a] border-[#2a2a2a] text-white font-mono"
+              />
+
+              <Textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                rows={5}
+                placeholder="Your Message"
+                className="bg-[#0a0a0a] border-[#2a2a2a] text-white font-mono"
+              />
 
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-[#38FF62] hover:bg-[#2AE052] text-black font-mono uppercase tracking-wider py-6 text-sm font-semibold border-0"
-                style={{ borderRadius: '0' }}
+                className="w-full bg-[#38FF62] hover:bg-[#2AE052] text-black font-mono py-6"
               >
                 <Send size={18} className="mr-2" />
                 {isSubmitting ? 'Sending...' : 'Send Message'}
               </Button>
+
             </form>
           </Card>
+
         </div>
       </div>
     </section>
